@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var currentValue: Int = 0
-    var targetValue: Int = 0
+    var currentValue = 0
+    var targetValue = 0
+    var score = 0
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var targetLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +28,30 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAlert() {
-        var difference: Int
-        if currentValue > targetValue {
-            difference = currentValue - targetValue
-        } else if currentValue < targetValue {
-            difference = targetValue - currentValue
-        } else {
-            difference = 0
-        }
+        //One way to calculate the difference between slider value and target value
+//        var difference: Int
+//        if currentValue > targetValue {
+//            difference = currentValue - targetValue
+//        } else if currentValue < targetValue {
+//            difference = targetValue - currentValue
+//        } else {
+//            difference = 0
+//        }
+        //Second way to calculate the difference
+//        var difference = currentValue - targetValue
+//        if difference < 0 {
+//            difference = difference * -1
+//        }
+        //Most concise and direct way
+        let difference = abs(currentValue - targetValue)
+        
+        let points = 100 - difference
+        //below is the same as score = score + points
+        score += points
         
         //The \n tells xcode to insert a special "new line" character at this point, which will
         //break up the text into two lines so the message is easier to read.
-        let message = "The value of the slider is: \(currentValue)" + "\nThe target value is: \(targetValue)" + "\nThe difference is: \(difference)"
+        let message = "The value of the slider is: \(currentValue)" + "\nThe target value is: \(targetValue)" + "\nThe difference is: \(difference)" + "\nYou scored \(points) points"
         
         let alert = UIAlertController(title: "Hello World", message: message, preferredStyle: .alert)
         
@@ -63,6 +77,7 @@ class ViewController: UIViewController {
     
     func updateLabels() {
         targetLabel.text = String(targetValue)
+        scoreLabel.text = String(score)
     }
     
 }
