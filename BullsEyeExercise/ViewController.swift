@@ -13,9 +13,11 @@ class ViewController: UIViewController {
     var currentValue = 0
     var targetValue = 0
     var score = 0
+    var round = 1
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var roundLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,8 @@ class ViewController: UIViewController {
         //below is the same as score = score + points
         score += points
         
+        round += 1
+        
         //The \n tells xcode to insert a special "new line" character at this point, which will
         //break up the text into two lines so the message is easier to read.
         let message = "The value of the slider is: \(currentValue)" + "\nThe target value is: \(targetValue)" + "\nThe difference is: \(difference)" + "\nYou scored \(points) points"
@@ -78,6 +82,7 @@ class ViewController: UIViewController {
     func updateLabels() {
         targetLabel.text = String(targetValue)
         scoreLabel.text = String(score)
+        roundLabel.text = String(round)
     }
     
 }
