@@ -48,9 +48,15 @@ class ViewController: UIViewController {
         let difference = abs(currentValue - targetValue)
         
         let points = 100 - difference
-        //below is the same as score = score + points
-        score += points
         
+        if points == 100 {
+            score += points + 100
+        } else if points == 99 {
+            score += points + 50
+        } else {
+            //below is the same as score = score + points
+            score += points
+        }
         round += 1
         
         //The \n tells xcode to insert a special "new line" character at this point, which will
