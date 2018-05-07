@@ -59,17 +59,18 @@ class ViewController: UIViewController {
         
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         
-        let alert = UIAlertController(title: "Hello World", message: message, preferredStyle: .alert)
-        
-        if points == 100 {
-            alert.title = "Perfect!"
-        } else if points > 50 && points < 100 {
-            alert.title = "Almost!"
-        } else if points > 25 && points <= 50 {
-            alert.title = "Not quite ..."
-        } else if points <= 25 {
-            alert.title = "Yikes"
+        let title: String
+        if difference == 0 {
+            title = "Perfect!"
+        } else if difference < 5 {
+            title = "Almost!"
+        } else if difference < 10 {
+            title = "Not bad ..."
+        } else {
+            title = "Yikes"
         }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alert.addAction(action)
         
