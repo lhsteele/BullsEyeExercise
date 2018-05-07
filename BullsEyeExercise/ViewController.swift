@@ -57,9 +57,19 @@ class ViewController: UIViewController {
         //break up the text into two lines so the message is easier to read.
         let message = "The value of the slider is: \(currentValue)" + "\nThe target value is: \(targetValue)" + "\nThe difference is: \(difference)" + "\nYou scored \(points) points"
         
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
         let alert = UIAlertController(title: "Hello World", message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        if points == 100 {
+            alert.title = "Perfect!"
+        } else if points > 50 && points < 100 {
+            alert.title = "Almost!"
+        } else if points > 25 && points <= 50 {
+            alert.title = "Not quite ..."
+        } else if points <= 25 {
+            alert.title = "Yikes"
+        }
         
         alert.addAction(action)
         
